@@ -1,5 +1,13 @@
 public class Curso {
 
+    public Curso(long id, String nombre, String descripcion, int numeroCreditos, int version) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.numeroCreditos = numeroCreditos;
+        this.version = version;
+    }
+
     private long id;
 
     private String nombre;

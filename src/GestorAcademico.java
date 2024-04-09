@@ -10,10 +10,10 @@ public class GestorAcademico implements ServiciosAcademicosI{
     //Curso contiene estudiantes
     private HashMap<Long, List<Long>> estudiantesInscritos;
 
-    public GestorAcademico(ArrayList<Estudiante> estudiantes, ArrayList<Curso> cursos, HashMap<Long, List<Long>> estudiantesInscritos) {
-        this.estudiantes = estudiantes;
-        this.cursos = cursos;
-        this.estudiantesInscritos = estudiantesInscritos;
+    public GestorAcademico() {
+        this.estudiantes = new ArrayList<>();
+        this.cursos = new ArrayList<>();
+        this.estudiantesInscritos = new HashMap<>();
     }
 
     @Override
@@ -27,6 +27,8 @@ public class GestorAcademico implements ServiciosAcademicosI{
     public void agregarCurso(Curso curso) {
         if (!this.cursos.contains(curso)) {
             this.cursos.add(curso);
+            List<Long> estudiantes = new ArrayList<>();
+            this.estudiantesInscritos.put(curso.getId(), estudiantes);
         }
     }
 
@@ -38,9 +40,7 @@ public class GestorAcademico implements ServiciosAcademicosI{
         if(this.estudiantesInscritos.containsKey(idCurso)){
             this.estudiantesInscritos.get(idCurso).add(estudiante.getId());
         }else{
-            List<Long> estudiantes = new ArrayList<>();
-            estudiantes.add(estudiante.getId());
-            this.estudiantesInscritos.put(idCurso, estudiantes);
+            System.out.println("No existe el curso");
         }
     }
 
@@ -50,5 +50,17 @@ public class GestorAcademico implements ServiciosAcademicosI{
             throw new EstudianteNoInscritoEnCursoException("No está inscrito o el ID del curso no es válido.");
         }
         this.estudiantesInscritos.get(idCurso).remove(idEstudiante);
+    }
+
+    public ArrayList<Estudiante> getEstudiantes() {
+        return estudiantes;
+    }
+
+    public ArrayList<Curso> getCursos() {
+        return cursos;
+    }
+
+    public HashMap<Long, List<Long>> getEstudiantesInscritos() {
+        return estudiantesInscritos;
     }
 }

@@ -2,6 +2,13 @@ import java.util.Date;
 
 public class Persona {
 
+    public Persona(long id, String nombre, String apellido, Date fechaDeNacimiento) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaDeNacimiento = fechaDeNacimiento;
+    }
+
     private long id;
 
     private String nombre;
